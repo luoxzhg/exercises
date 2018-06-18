@@ -1,0 +1,101 @@
+#include "resource.h"
+#include <windows.h>
+#include <commctrl.h>
+#include <richedit.h>
+
+// 图标资源
+myIcon   ICON     "icon1.ico"
+
+
+// 光标资源
+myCursor CURSOR   "Normal.cur"
+
+
+// 字符串表
+STRINGTABLE  DISCARDABLE
+BEGIN
+    IDS_SUN     "天上有个太阳"
+    IDS_MOON    "水中有个月亮"
+END
+
+
+// 菜单资源
+myMenu MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New  \aCtrl+N",                  IDM_FILE_NEW
+        MENUITEM "&Open \tCtrl+O",                  IDM_FILE_OPEN
+        MENUITEM "&Save \tCtrl+S",                  IDM_FILE_SAVE, GRAYED
+        MENUITEM "Save as",                         IDM_FILE_SAVE_AS, GRAYED
+        MENUITEM "Save all \tCtrl+Shift+S",         IDM_FILE_SAVE_ALL, GRAYED
+        MENUITEM  SEPARATOR
+        MENUITEM "&Quit \tAlt+F4",                  IDM_QUIT
+    END
+
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "复制\tCtrl+C",                    IDM_EDIT_COPY, GRAYED
+        MENUITEM "剪切\tCtrl+X",                    IDM_EDIT_CUT, GRAYED
+        MENUITEM "粘贴\tCtrl+V",                    IDM_EDIT_PASTE, GRAYED
+        MENUITEM "全选\tCtrl+A",                    IDM_EDIT_SELECTALL
+        MENUITEM SEPARATOR
+        MENUITEM "撤销\tCtrl+Z",                    IDM_EDIT_UNDO, GRAYED
+        MENUITEM "重做\tCtrl+Shift+Z",              IDM_EDIT_REDO, GRAYED
+    END
+
+    POPUP "格式(&O)"
+    BEGIN
+        POPUP "对齐(&A)"
+        BEGIN
+            MENUITEM "左对齐(&L)",                  IDM_ALIGN_LEFT, CHECKED
+            MENUITEM "居中对齐(&C)",                IDM_ALIGN_CENTER
+            MENUITEM "右对齐(&R)",                  IDM_ALIGN_RIGHT
+        END
+
+        POPUP "样式(&S)"
+        {
+            MENUITEM "粗体(&B)",                    IDM_STYLE_BOLD
+            MENUITEM "斜体(&I)",                    IDM_STYLE_ITALIC
+            MENUITEM "下划线(&U)",                  IDM_STYLE_UNDERLINE
+            MENUITEM "删除线(&D)",                  IDM_STYLE_DELLINE
+        }
+    END
+
+    MENUITEM "创建模式对话框",                      IDM_DLG_MODE
+    MENUITEM "创建无模式对话框",                    IDM_DLG_MODELESS
+
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "关于",                            IDM_HELP
+    END
+
+END
+
+// 对话框资源
+#define DLG_WIDTH  280
+#define DLG_HIGHT  150
+#define BTN_WIDTH 30
+#define BTN_HIGHT 12
+#define ICON_WIDTH 32
+#define ICON_HIGHT 32
+LANGUAGE 0, SUBLANG_NEUTRAL
+DLG_MAIN DIALOG 0, 0, DLG_WIDTH, DLG_HIGHT    // 对话框客户区尺寸
+STYLE DS_3DLOOK | DS_CENTER | DS_MODALFRAME | DS_SHELLFONT | WS_CAPTION | WS_VISIBLE | WS_POPUP | WS_SYSMENU
+CAPTION "Dialog"
+FONT 12, "Ms Shell Dlg"
+{
+    ICON            "myIcon", IDC_STATIC,  0, 0, ICON_WIDTH, ICON_WIDTH
+    CONTROL          "MYBMP", IDC_STATIC, "Static", SS_BITMAP, 40, 0, 100, 100
+    DEFPUSHBUTTON   "ok", IDOK, (DLG_WIDTH - BTN_WIDTH) / 2, (DLG_HIGHT - BTN_HIGHT - 5), BTN_WIDTH, BTN_HIGHT
+}
+#undef DLG_WIDTH
+#undef DLG_HIGHT
+#undef BTN_WIDTH
+#undef BIN_HIGHT
+#undef ICON_WIDTH
+#undef ICON_HIGHT
+
+
+// 位图
+myBmp  BITMAP    "bitmap1.bmp"

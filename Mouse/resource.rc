@@ -1,0 +1,12 @@
+#include "resource.h"
+
+
+MYBITMAP1  BITMAP   "bitmap1.bmp"
+MYBITMAP2  BITMAP   "bitmap2.bmp"
+
+myMenu MENU
+BEGIN
+    MENUITEM "设置定时器",      IDM_TIMER
+    MENUITEM "关闭定时器",      IDM_KILLTIMER
+    MENUITEM "ZOOMIN",          IDM_ZOOMIN
+END

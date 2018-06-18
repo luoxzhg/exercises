@@ -1,0 +1,9 @@
+
+#define  ID_STATIC  -1
+
+#define IDM_TIMER     40001
+#define IDM_KILLTIMER 40002
+#define IDM_ZOOMIN    40003
+
+#define IDT_TIMER1 40101
+#define IDT_TIMER2 40102
